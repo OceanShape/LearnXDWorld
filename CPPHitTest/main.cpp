@@ -2,13 +2,14 @@
 #include "gl/glew.h"
 #include "GLFW/glfw3.h"
 
-void window_resized(GLFWwindow* window, int width, int height);
-void key_pressed(GLFWwindow* window, int key, int scancode, int action, int mods);
-void show_glfw_error(int error, const char* description);
+void windowResized(GLFWwindow* window, int width, int height);
+void keyPressed(GLFWwindow* window, int key, int scancode, int action, int mods);
+void mouseMoved(GLFWwindow* window, double xpos, double ypos);
+void showGlfwError(int error, const char* description);
 
 int main()
 {
-  glfwSetErrorCallback(show_glfw_error);
+  glfwSetErrorCallback(showGlfwError);
 
 
   if (!glfwInit()) {
@@ -37,8 +38,9 @@ int main()
   }
 
   glfwMakeContextCurrent(window);
-  glfwSetWindowSizeCallback(window, window_resized);
-  glfwSetKeyCallback(window, key_pressed);
+  glfwSetWindowSizeCallback(window, windowResized);
+  glfwSetKeyCallback(window, keyPressed);
+  glfwSetCursorPosCallback(window, mouseMoved);
   glfwSwapInterval(1);
 
   glewExperimental = GL_TRUE;
@@ -81,11 +83,11 @@ int main()
   return 0;
 }
 
-void show_glfw_error(int error, const char* description) {
+void showGlfwError(int error, const char* description) {
   std::cerr << "Error: " << description << '\n';
 }
 
-void window_resized(GLFWwindow* window, int width, int height) {
+void windowResized(GLFWwindow* window, int width, int height) {
   std::cout << "Window resized, new window size: " << width << " x " << height << '\n';
 
   glClearColor(0, 0, 1, 1);
@@ -93,9 +95,13 @@ void window_resized(GLFWwindow* window, int width, int height) {
   glfwSwapBuffers(window);
 }
 
-void key_pressed(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void keyPressed(GLFWwindow* window, int key, int scancode, int action, int mods) {
   if (key == 'Q' && action == GLFW_PRESS) {
     glfwTerminate();
     exit(0);
   }
+}
+
+void mouseMoved(GLFWwindow* window, double xpos, double ypos) {
+  std::cout << "mouse point: (" << xpos << "," << ypos << ")" << std::endl;
 }
