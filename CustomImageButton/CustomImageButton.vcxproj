@@ -24,6 +24,7 @@
     <ProjectGuid>{58aa0e60-2ac4-45d6-b09b-a4479542ffef}</ProjectGuid>
     <RootNamespace>CPPHitTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CustomImageButton</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
