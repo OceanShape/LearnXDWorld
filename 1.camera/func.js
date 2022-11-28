@@ -3,6 +3,10 @@
  * 파일은 asm.js파일, html.mem파일, js 파일 순으로 적용합니다.
  *********************************************************/
 
+ var GLOBAL = {
+    engineDirectory: "../engine/"
+};
+
 // tilt 정의
 // 카메라 상하 회전 
 // 최소 최대 각도 : 10~90도
@@ -89,7 +93,7 @@ function setPerson(_type) {
     var tm = (new Date()).getTime();	// 캐싱 방지
     
 	// 1. XDWorldEM.asm.js 파일 로드
-	var file = "../engine/XDWorldEM.asm.js?tm="+tm;
+	var file = GLOBAL.engineDirectory + "XDWorldEM.asm.js?tm="+tm;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', file, true);
 	xhr.onload = function() {
@@ -102,14 +106,14 @@ function setPerson(_type) {
 		setTimeout(function() {
 			(function() {
 
-				var memoryInitializer = "../engine/XDWorldEM.html.mem?tm="+tm;
+				var memoryInitializer = GLOBAL.engineDirectory + "XDWorldEM.html.mem?tm="+tm;
 				var xhr = Module['memoryInitializerRequest'] = new XMLHttpRequest();
 				xhr.open('GET', memoryInitializer, true);
 				xhr.responseType = 'arraybuffer';
 				xhr.onload =  function(){
 
 					// 3. XDWorldEM.js 파일 로드
-					var url = "../engine/XDWorldEM.js?tm="+tm;
+					var url = GLOBAL.engineDirectory + "XDWorldEM.js?tm="+tm;
 					var xhr = new XMLHttpRequest();
 					xhr.open('GET',url , true);
 					xhr.onload = function(){
