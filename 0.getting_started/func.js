@@ -1,5 +1,5 @@
 var GLOBAL = {
-    engineDirectory: "./engine/"
+    engineDirectory: "../engine/"
 };
 
 // 엔진 로드 후 실행할 초기화 함수(Module.postRun)
