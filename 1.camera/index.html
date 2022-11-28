@@ -1,13 +1,90 @@
 <!doctype html>
 <html>
+
 <head>
-	<title>XDWorldEM</title>
+	<title>index</title>
 </head>
+
 <body>
-	<script>
-		var initScript = document.createElement('script');
-		initScript.src = "./init.js";
-		document.body.appendChild(initScript);
-	</script>
+	<script src="./func.js"></script>
+	<script src="./init.js"></script>
 </body>
+
+<div id='my_div' onmouseover="Module.XDIsMouseOverDiv(true);" onmouseout="Module.XDIsMouseOverDiv(false);" style="
+position: absolute; background-color: beige; border-radius: 10px; margin: 10px; padding: 15px;">
+<table style="width: 270px;">
+    <tr>
+        <td>TILT</td>
+        <td><input id="u_rag_nowTilt" type="range" class="slider" min=10.0 max=90.0 value=90 step=1 style="width:90%"
+                onChange="setTilt(this.value);" oninput="setTilt(this.value);">
+        </td>
+        <td align="center"><label id="u_lab_nowTilt"> &nbsp 90</label></td>
+    </tr>
+    <tr>
+        <td>DIRECT</td>
+        <td><input id="u_rag_nowDirect" type="range" min=-180.0 max=180.0 step=1 style="width:90%"
+                onChange="setDirect(this.value);" oninput="setDirect(this.value);">
+        </td>
+        <td align="center"><label id="u_lab_nowDirect"> &nbsp 180</label></td>
+    </tr>
+    <tr>
+        <td>ALTITUDE </td>
+        <td><input id="u_rag_nowAltitude" type="range" min=500.0 max=100000 step=100 style="width:90%"
+                onChange="setAltitude(this.value);" oninput="setAltitude(this.value);">
+        </td>
+        <td align="center"><label id="u_lab_nowAltitude"> &nbsp 48600</label></td>
+    </tr>
+    <tr>
+        <td>시야각</td>
+        <td><input id="u_rag_nowFOV" type="range" min=10.0 max=90.0 step=1 style="width:90%" value=45
+                onChange="setFOV(this.value);" oninput="setFOV(this.value);"></td>
+        <td align="center"><label id="u_lab_nowFOV"> &nbsp 45</label></td>
+    </tr>
+</table>
+<label> ============================ </label><br />
+<label> 카메라 이동 </label>
+<table style="width: 270px;">
+    <tr>
+        <td align="center" style="width: 50px;">경도</td>
+        <td align="center"><input id="u_txt_lon" type="text" style="width: 90%; height: 90%;" value="126.926464"></td>
+        <td rowspan="3" align="center"><input type="button" style="width: 90%; height: 70px;" value="MOVE"
+                onclick="setMove()"></td>
+    </tr>
+    <tr>
+        <td align="center">위도</td>
+        <td align="center"><input id="u_txt_lat" type="text" style="width: 90%; height: 90%;" value="37.524635"></td>
+    </tr>
+    <tr>
+        <td align="center">고도</td>
+        <td align="center"><input id="u_txt_alt" type="text" style="width: 90%; height: 90%;" value="500"></td>
+    </tr>
+</table>
+<label> ------------------------------------------------- </label><br />
+<label> 카메라 위치 </label>
+<table style="width: 270px;">
+    <tr>
+        <td>경도</td>
+        <td><label id="u_lab_nowLon"></label></td>
+    </tr>
+    <tr>
+        <td>위도 </td>
+        <td><label id="u_lab_nowLat"></label></td>
+    </tr>
+    <tr>
+        <td>고도 </td>
+        <td><label id="u_lab_nowAlt"></label></td>
+    </tr>
+</table>
+<label> ============================ </label><br />
+<table style="width: 270px;">
+    <tr>
+        <td><input type="radio" name="chk_info" value="HTML" onChange="setPerson(1)">&nbsp 1인칭 &nbsp</td>
+        <td><input type="radio" name="chk_info" value="CSS" onChange="setPerson(3)" checked="checked">&nbsp 3인칭</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+</div>
+
 </html>
