@@ -6,6 +6,21 @@ var GLOBAL = {
 function init() {
 	// 엔진 초기화 API 호출(필수)
 	Module.Start(window.innerWidth, window.innerHeight);
+    Module.map = Module.getMap();
+    
+    Module.canvas.onmousedown = function(e) {
+    	
+    	var screenPosition = new Module.JSVector2D(e.x, e.y);
+    	
+    	// 화면->지도 좌표 변환
+    	var mapPosition = Module.map.ScreenToMapPointEX(screenPosition);
+    	
+    	document.getElementById("Lon").value = parseFloat(mapPosition.Longitude).toFixed(6);
+    	document.getElementById("Lat").value = parseFloat(mapPosition.Latitude).toFixed(6);
+    	document.getElementById("Alt").value = parseFloat(mapPosition.Altitude).toFixed(6);
+    };
+
+	Module.XDEMapCreateLayer("facility_build", "https://xdworld.vworld.kr", 0, true, true, false, 9, 0, 15);
 }
 
 // 엔진 파일 로드
