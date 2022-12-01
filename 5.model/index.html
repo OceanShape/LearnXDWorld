@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+	<title>XDWorldEM</title>
+</head>
+<body>
+	<script src="func.js"></script>
+	<script src="init.js"></script>
+</body>
+
+<div style="position: absolute; background-color: beige;">
+	<style>
+		input[type="text"] {
+			width: 75px;
+			text-align: center;
+		}
+		input[type="range"] {
+			width: 80px;
+		}
+		input[type="button"] {
+			width: 40px;
+			height: 70px;
+		}
+	</style>
+	<span>Position</span>
+	<table>
+		<tr>
+			<td><span>LON</span></td>
+			<td>
+				<input id="longitude" type="text" value="0.0">
+			</td>
+			<td rowspan="3">
+				<input type="button" value="이동" onclick="setPosition();">
+			</td>
+		</tr>
+		<tr>
+			<td><span>LAT</span></td>
+			<td>
+				<input id="latitude" type="text" value="0.0">
+			</td>
+		</tr>
+		<tr>
+			<td><span>ALT</span></td>
+			<td>
+				<input id="altitude" type="text" value="0.0">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<span>Rotation</span>
+	<table>
+		<tr>
+			<td><span>X</span></td>
+			<td>
+				<input id="rotationX" type="range" value="0.0" min="0.0" max="360.0" step="0.1" onchange="setRotation();">
+				<span id="rotationXtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Y</span></td>
+			<td>
+				<input id="rotationY" type="range" value="0.0" min="0.0" max="360.0" step="0.1" onchange="setRotation();">
+				<span id="rotationYtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Z</span></td>
+			<td>
+				<input id="rotationZ" type="range" value="0.0" min="0.0" max="360.0" step="0.1" onchange="setRotation();">
+				<span id="rotationZtext"></span>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<span>Scale</span>
+	<table>
+		<tr>
+			<td><span>X</span></td>
+			<td>
+				<input id="scaleX" type="range" value="1.0" min="0.5" max="5.0" step="0.1" onchange="setScale();">
+				<span id="scaleXtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Y</span></td>
+			<td>
+				<input id="scaleY" type="range" value="1.0" min="0.5" max="5.0" step="0.1" onchange="setScale();">
+				<span id="scaleYtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Z</span></td>
+			<td>
+				<input id="scaleZ" type="range" value="1.0" min="0.5" max="5.0" step="0.1" onchange="setScale();">
+				<span id="scaleZtext"></span>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<span>Base Point</span>
+	<table>
+		<tr>
+			<td><span>X</span></td>
+			<td>
+				<input id="basePointX" type="range" value="0.0" min="-10.0" max="10.0" step="0.1" onchange="setBasePoint();">
+				<span id="basePointXtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Y</span></td>
+			<td>
+				<input id="basePointY" type="range" value="0.0" min="-10.0" max="10.0" step="0.1" onchange="setBasePoint();">
+				<span id="basePointYtext"></span>
+			</td>
+		</tr>
+		<tr>
+			<td><span>Z</span></td>
+			<td>
+				<input id="basePointZ" type="range" value="0.0" min="-10.0" max="10.0" step="0.1" onchange="setBasePoint();">
+				<span id="basePointZtext"></span>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</html>
