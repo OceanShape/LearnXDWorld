@@ -1,5 +1,6 @@
 var GLOBAL = {
-    engineDirectory: "../engine/"
+    engineDirectory: "../engine/",
+    LAYER: null
 };
 
 // 엔진 로드 후 실행할 초기화 함수(Module.postRun)
@@ -21,6 +22,31 @@ function init() {
     };
 
 	Module.XDEMapCreateLayer("facility_build", "https://xdworld.vworld.kr", 0, true, true, false, 9, 0, 15);
+	Module.setVisibleRange("facility_build", 3.0, 1000000.0);
+	
+	// 건물 객체 반환
+	var layerList = new Module.JSLayerList(false);
+	GLOBAL.LAYER = layerList.nameAtLayer("facility_build");
+	setTileTextureLOD(0.5);
+	
+	// 텍스쳐 용량 제한 해제
+	Module.getOption().setTextureCapacityLimit(false);
+}
+
+/* 건물 정보 출력 */
+function setTileTextureLOD(_lod_rate) {
+	
+	// 레이어 리스트에서 객체 키를 사용해 객체 반환
+	if (GLOBAL.LAYER == null) {
+		return;
+	}
+	
+	// 텍스쳐 화질 LOD 조정
+	GLOBAL.LAYER.lod_object_detail_ratio = _lod_rate;
+	document.getElementById("texture_lod_rate").innerHTML = _lod_rate;
+	
+	// 화면 갱신
+	Module.XDRenderData();
 }
 
 // 엔진 파일 로드
