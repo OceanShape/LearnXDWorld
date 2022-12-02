@@ -1,10 +1,9 @@
 var GLOBAL = {
     ENGINE_DIRECTORY: "../engine/",
-    LAYER: null
+    LAYER: null,
+	m_mercount: 0, // 측정 오브젝트 갯수
+	m_objcount: 0  // 측정 오브젝트를 표시하는 POI 갯수
 };
-
-let m_mercount = 0;	// 측정 오브젝트 갯수
-let m_objcount = 0;	// 측정 오브젝트를 표시하는 POI 갯수
 
 /*
  * 기존 Fire_EventAddDistancePoint도 사용가능
@@ -96,7 +95,7 @@ function addPoint(e) {
 		totalDistance = e.dTotalDistance;
 
 	if (partDistance == 0 && totalDistance == 0) {
-		m_objcount = 0;	// POI 갯수 초기화
+		GLOBAL.m_objcount = 0;	// POI 갯수 초기화
 		createPOI(new Module.JSVector3D(e.dLon, e.dLat, e.dAlt), "rgba(255, 204, 198, 0.8)", "Start", true);
 	} else {
 		if (e.dDistance > 0.01) {
@@ -109,7 +108,7 @@ function addPoint(e) {
 /* callBackCompletePoint에 지정된 함수 [마우스 더블 클릭 시 이벤트 발생]*/
 function endPoint(e) {
 	viewListOBjKey(e);
-	m_mercount++;
+	GLOBAL.m_objcount++;
 }
 
 // =============================================== POI 생성 과정
@@ -135,11 +134,11 @@ function createPOI(_position, _color, _value, _balloonType) {
 	let layerList = new Module.JSLayerList(true);
 	let layer = layerList.nameAtLayer("MEASURE_POI");
 
-	poi = Module.createPoint(m_mercount + "_POI_" + m_objcount);
+	poi = Module.createPoint(GLOBAL.m_objcount + "_POI_" + GLOBAL.m_objcount);
 	poi.setPosition(_position);												// 위치 설정
 	poi.setImage(imageData, drawCanvas.width, drawCanvas.height);			// 아이콘 설정
 	layer.addObject(poi, 0);												// POI 레이어 등록
-	m_objcount++;
+	GLOBAL.m_objcount++;
 }
 
 /* 아이콘 이미지 데이터 반환 */
@@ -288,7 +287,7 @@ function clearAnalysis() {
 
 	// 실행 중인 분석 내용 초기화
 	Module.XDClearDistanceMeasurement();
-	m_mercount = 0;
+	GLOBAL.m_objcount = 0;
 	
 	// 레이어 삭제
 	let layerList = new Module.JSLayerList(true);
