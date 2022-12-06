@@ -40,9 +40,13 @@ function init() {
 	Module.getOption().setTextureCapacityLimit(false);
 	
 	// 카메라 위치 설정
-    let from = new Module.JSVector3D(129.127027776, 35.173027663, 50);
-    let to = new Module.JSVector3D(129.130168889, 35.169365482, 32.280031785);
-	Module.getViewCamera().look(from, to);
+    // let from = new Module.JSVector3D(129.127027776, 35.173027663, 50);
+    // let to = new Module.JSVector3D(129.130168889, 35.169365482, 32.280031785);
+	// Module.getViewCamera().look(from, to);
+    Module.getViewCamera().moveLonLatAlt(129.127461407, 35.172285101, 50, true);
+    Module.getViewCamera().setTilt(1);
+	Module.getViewCamera().setDirect(150);
+
 
 	// 분석 출력 POI 레이어 생성
 	var POILayerList = new Module.JSLayerList(true);
